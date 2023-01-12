@@ -34,27 +34,23 @@ Matrix Matrix::operator*(const int scalar) {
     return result;
 }
 
-Matrix Matrix::operator-(void) {
-    Matrix result;
+Matrix operator-(Matrix m) {
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 2; j++) {
-            result.a[i][j] = -this->a[i][j];
+            m.a[i][j] = -m.a[i][j];
         }
     }
-    return result;
+    return m;
 }
 
-
-Matrix Matrix::operator!(void) {
-    Matrix result;
+Matrix operator!(Matrix m) {
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 2; j++) {
-            result.a[i][j] = this->a[j][i];
+            std::swap(m.a[i][j], m.a[j][i]);
         }
     }
-    return result;
+    return m;
 }
-
 
 std::istream& operator>>(std::istream& in, Matrix& m) {
     for (int i = 0; i < 2; i++) {
@@ -74,5 +70,4 @@ std::ostream& operator<<(std::ostream& out, const Matrix& m) {
     }
     return out;
 }
-
 
